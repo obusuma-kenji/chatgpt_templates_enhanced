@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>社員のためのChatGPT仕事テンプレ20選</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --paper: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #dbe3ef;
+      --accent: #1f6feb;
+      --accent-soft: #eaf2ff;
+      --title: #0f172a;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 16px 80px;
+    }
+
+    .page {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      padding: 40px;
+      margin: 0 auto 24px;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .cover {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        linear-gradient(135deg, rgba(31,111,235,.08), rgba(31,111,235,0) 55%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid #d7e6ff;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: var(--title);
+      font-size: 40px;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      font-size: 20px;
+      color: #334155;
+      margin: 0 0 18px;
+    }
+
+    .author {
+      margin-top: 28px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      color: var(--title);
+      font-size: 28px;
+      line-height: 1.45;
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      color: var(--title);
+      font-size: 21px;
+      line-height: 1.5;
+    }
+
+    p { margin: 0 0 12px; }
+
+    .muted { color: var(--muted); }
+
+    .toc {
+      margin: 0;
+      padding-left: 1.4em;
+      list-style: decimal;
+    }
+
+    .checklist, .mini-list {
+      margin: 0;
+      padding-left: 1.4em;
+      list-style: disc;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      background: #fcfdff;
+    }
+
+    .prompt-box {
+      margin-top: 10px;
+      background: #f8fafc;
+      border: 1px solid #d9e2ef;
+      border-radius: 14px;
+      padding: 18px;
+      white-space: pre-wrap;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .template-title {
+      margin: 0 0 8px;
+      font-size: 24px;
+      color: var(--title);
+    }
+
+    .meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* 【】注釈バー */
+    .hint {
+      display: inline-block;
+      font-size: 13px;
+      color: #1f6feb;
+      background: #eaf2ff;
+      border-radius: 8px;
+      padding: 5px 12px;
+      margin: 6px 0 4px;
+    }
+
+    /* 使用例ボックス */
+    .example-box {
+      margin-top: 10px;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      line-height: 1.85;
+      white-space: pre-wrap;
+    }
+
+    .example-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: #16a34a;
+      background: #dcfce7;
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+    }
+
+    /* 出力例ボックス */
+    .output-box {
+      margin-top: 10px;
+      background: #faf5ff;
+      border: 1px solid #c4b5fd;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      line-height: 1.85;
+      white-space: pre-wrap;
+    }
+
+    .output-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: #7c3aed;
+      background: #ede9fe;
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+    }
+
+    .small { font-size: 14px; }
+
+    .page-number {
+      margin-top: 20px;
+      text-align: right;
+      color: #94a3b8;
+      font-size: 12px;
+    }
+
+    .notice-box {
+      background: #fffbea;
+      border: 1px solid #f4c430;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: #7c5c00;
+      margin-top: 10px;
+      line-height: 1.8;
+    }
+
+    article {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    article:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    @page { size: A4; margin: 14mm; }
+
+    @media (max-width: 720px) {
+      .wrap { padding: 16px 10px 40px; }
+      .page { padding: 24px 18px; border-radius: 14px; }
+      .cover { min-height: auto; }
+      h1 { font-size: 30px; }
+      h2 { font-size: 24px; }
+      .lead { font-size: 17px; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .wrap { max-width: none; margin: 0; padding: 0; }
+      .page {
+        margin: 0; border: none; box-shadow: none;
+        border-radius: 0; min-height: auto; padding: 14mm;
+      }
+      .cover { min-height: 0; background: #fff; }
+      a { color: inherit; text-decoration: none; }
+    }
+  
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin: 10px 0 12px;
+    }
+
+    .template-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 108px;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .copy-btn {
+      appearance: none;
+      border: 1px solid #c7d2fe;
+      background: #eef2ff;
+      color: #3730a3;
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .copy-btn:hover {
+      background: #e0e7ff;
+      transform: translateY(-1px);
+    }
+
+    .copy-btn.copied {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .search-box {
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 15px;
+    }
+
+    .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .quick-link {
+      display: block;
+      text-decoration: none;
+      color: #0f172a;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .quick-link span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .hidden-template { display: none !important; }
+
+    @media (max-width: 720px) {
+      .quick-nav { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media print {
+      .copy-btn, .search-box, .quick-nav { display: none !important; }
+      .template-no { background: #fff; color: #000; border: 1px solid #999; }
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 表紙 -->
+  <section class="page cover">
+    <div class="eyebrow">社員向け・AI初心者向け</div>
+    <h1>社員のための<br>ChatGPT仕事テンプレ20選</h1>
+    <p class="lead">コピーして貼るだけで、仕事の文章・整理・調査が速くなる。</p>
+    <p class="lead">メール、報告、議事録、要約、比較、タスク整理まで、すぐ使える実務テンプレート集。</p>
+    <p class="author">著者：AI社労士</p>
+    <p class="footer-note">このHTMLはブラウザで閲覧でき、そのまま印刷またはPDF保存できます。</p>
+  </section>
+
+  <!-- はじめに -->
+  <section class="page">
+    <h2>はじめに</h2>
+    <p>この教材は、ChatGPTを仕事で使ってみたい社員向けに作成した、実務用テンプレート集です。難しい設定や専門知識は不要です。必要なのは、テンプレをコピーして、内容を少し足して貼ることだけです。</p>
+    <p>特に、次のような場面で役立ちます。</p>
+    <ul class="checklist">
+      <li>文章を短時間で整えたい</li>
+      <li>報告や共有をわかりやすくしたい</li>
+      <li>会議メモやタスクを整理したい</li>
+      <li>下調べや比較を手早く行いたい</li>
+      <li>AIを使いたいが、何をどう頼めばよいかわからない</li>
+    </ul>
+    <h3>使い方</h3>
+    <ol style="list-style:decimal; padding-left:1.4em;">
+      <li>使いたいテンプレを選ぶ</li>
+      <li>ChatGPTにそのまま貼る</li>
+      <li>【　】の部分を自分の内容に置き換える</li>
+      <li>出てきた結果を必ず自分で確認してから使う</li>
+    </ol>
+    <div class="grid-2" style="margin-top:18px;">
+      <div class="card">
+        <div class="label">コツ</div>
+        <p>依頼は短くてもかまいませんが、相手・目的・条件を入れると精度が上がります。</p>
+      </div>
+      <div class="card">
+        <div class="label">注意</div>
+        <p>社外秘情報、個人情報、機密情報の入力は社内ルールに従ってください。AIの出力は必ず人が最終確認してください。</p>
+      </div>
+    </div>
+    <div class="page-number">2</div>
+  </section>
+
+  <!-- 目次 -->
+  <section class="page">
+    <div class="section-header">
+      <h2>目次</h2>
+      <p class="muted">用途別に20本を収録しています。</p>
+
+      <input id="templateSearch" class="search-box" type="text" placeholder="テンプレ名で検索（例：メール、議事録、要約）">
+      <div class="quick-nav">
+        <a class="quick-link" href="#template-1">要約・整理<span>1〜6</span></a>
+        <a class="quick-link" href="#template-7">文章作成<span>7〜12</span></a>
+        <a class="quick-link" href="#template-13">記録・進行管理<span>13〜17</span></a>
+        <a class="quick-link" href="#template-18">判断支援<span>18〜20</span></a>
+      </div>
+
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>要約・整理</h3>
+        <ol class="toc">
+          <li>長文要約</li>
+          <li>記事・テキストの要点整理</li>
+          <li>比較表作成</li>
+          <li>会議メモ整理</li>
+          <li>下調べ・業務リサーチ</li>
+          <li>競合整理</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>文章作成</h3>
+        <ol class="toc" start="7">
+          <li>仕事用メール作成</li>
+          <li>返信文作成</li>
+          <li>文章の敬語化・自然化</li>
+          <li>上司向け報告文</li>
+          <li>社内共有文</li>
+          <li>依頼文・催促文</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>記録・進行管理</h3>
+        <ol class="toc" start="13">
+          <li>議事録整形</li>
+          <li>タスク整理</li>
+          <li>優先順位づけ</li>
+          <li>提案の骨子作成</li>
+          <li>課題整理</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>判断支援</h3>
+        <ol class="toc" start="18">
+          <li>判断材料整理</li>
+          <li>スケジュールたたき台</li>
+          <li>ToDoを実行計画化</li>
+        </ol>
+      </div>
+    </div>
+    <div class="page-number">3</div>
+  </section>
+
+  <!-- テンプレ 1〜4 -->
+  <section class="page">
+    <h2>テンプレート 1〜4</h2>
+
+    <article>
+      <div class="label">1 / 20</div>
+      <h3 class="template-title">長文要約</h3>
+      <div class="meta">出力形式：箇条書き＋結論1文</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">この文章を要約してください。条件：重要点だけ、5点以内の箇条書き、最後に結論を1文で。
+
+文章：
+【ここに文章を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+この文章を要約してください。条件：重要点だけ、5点以内の箇条書き、最後に結論を1文で。
+
+文章：
+厚生労働省の調査によると、2023年度の労働時間は…（以下、記事本文をそのまま貼る）</div>
+<div class="output-box"><span class="output-label">出力例</span>
+・2023年度の労働時間は前年比0.8%減少し、過去最低水準を更新
+・特に製造業・小売業で削減幅が大きく、テレワーク普及が主因
+・一方、管理職の時間外労働は増加傾向にあり、対策が急務
+・政府は2025年度までに週60時間超の労働者比率5%以下を目標に設定
+・中小企業では依然として長時間労働が常態化しており、格差が拡大
+
+【結論】労働時間の総量は改善傾向にあるものの、職種・規模による格差解消が今後の課題である。</div>
+    </article>
+
+    <article>
+      <div class="label">2 / 20</div>
+      <h3 class="template-title">記事・テキストの要点整理</h3>
+      <div class="meta">出力形式：見出し付き要約</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="notice-box">※ ChatGPTの無料版はURLを直接読み込めません。記事の本文をコピーして【】内に貼り付けて使ってください。</div>
+      <div class="prompt-box">この文章の内容を整理してください。条件：3分で読める長さ、要点・結論・注意点に分ける、専門用語はやさしく説明する。
+
+文章：
+【ここに記事本文を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+この文章の内容を整理してください。条件：3分で読める長さ、要点・結論・注意点に分ける、専門用語はやさしく説明する。
+
+文章：
+改正育児・介護休業法が2025年4月に施行され、従業員100人超の企業には…（記事本文を貼る）</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【要点】
+改正育児・介護休業法が2025年4月に施行され、従業員100人超の企業に育児休業取得率の公表が義務付けられました。
+
+【結論】
+企業は取得率を自社ウェブサイトや求人情報に掲載する必要があり、未対応の場合は行政指導の対象になる可能性があります。
+
+【注意点】
+「育児休業」と「育児休業給付金」は別制度です。給付金の申請手続きを忘れると従業員が不利益を受けるため、人事担当者は漏れなく対応してください。</div>
+    </article>
+
+    <article>
+      <div class="label">3 / 20</div>
+      <h3 class="template-title">比較表作成</h3>
+      <div class="meta">出力形式：比較表</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">以下を表で比較してください。比較対象：【A】【B】【C】。比較項目：特徴、メリット、デメリット、向いているケース。最後におすすめの選び方も書いてください。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+以下を表で比較してください。比較対象：【freee】【マネーフォワード】【弥生会計】。比較項目：特徴、メリット、デメリット、向いているケース。最後におすすめの選び方も書いてください。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+| 項目 | freee | マネーフォワード | 弥生会計 |
+|------|-------|----------------|---------|
+| 特徴 | 操作が直感的でUI重視 | 銀行連携が強力 | 老舗で安定性が高い |
+| メリット | 初心者でもすぐ使える | 自動仕訳の精度が高い | サポートが手厚い |
+| デメリット | カスタマイズが少ない | 料金がやや高め | UIが古めに感じる |
+| 向いているケース | 個人事業主・小規模法人 | 取引数が多い中小企業 | 経理担当がいる中堅企業 |
+
+【おすすめの選び方】
+初めて会計ソフトを導入するならfreee、銀行口座の自動連携を重視するならマネーフォワード、既存の経理フローを維持したいなら弥生会計が適しています。</div>
+    </article>
+
+    <article>
+      <div class="label">4 / 20</div>
+      <h3 class="template-title">会議メモ整理</h3>
+      <div class="meta">出力形式：議事メモ整理表／箇条書き</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">この会議メモを整理してください。出力形式：議題、決まったこと、未決事項、次のアクション、担当者、期限。
+
+メモ：
+【ここにメモを貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+この会議メモを整理してください。出力形式：議題、決まったこと、未決事項、次のアクション、担当者、期限。
+
+メモ：
+4/10 営業会議 参加：田中・山本・佐藤
+Q1売上は目標比90%。新規が伸び悩み。
+来月キャンペーン案を田中さんが4/17までに作成。
+既存フォローは山本さんが担当、月内に全件連絡。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【会議名】営業会議
+【日時】4月10日
+【参加者】田中・山本・佐藤
+
+■ 議題
+Q1売上の振り返りと来月の施策検討
+
+■ 決まったこと
+・来月のキャンペーン案を田中が作成する
+・既存顧客フォローは山本が担当する
+
+■ 未決事項
+・キャンペーン内容の詳細（田中案を確認後に決定）
+
+■ 次のアクション
+| 担当 | 内容 | 期限 |
+|------|------|------|
+| 田中 | キャンペーン案の作成 | 4/17 |
+| 山本 | 既存顧客への連絡（全件） | 4月末 |</div>
+    </article>
+
+    <div class="page-number">4</div>
+  </section>
+
+  <!-- テンプレ 5〜8 -->
+  <section class="page">
+    <h2>テンプレート 5〜8</h2>
+
+    <article>
+      <div class="label">5 / 20</div>
+      <h3 class="template-title">下調べ・業務リサーチ</h3>
+      <div class="meta">出力形式：要点整理</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">【テーマ】について仕事用の下調べをしてください。欲しい内容：概要、最近の動向、よくある課題、実務で見るべきポイント、次に調べるべき論点。できるだけ簡潔にお願いします。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+【インボイス制度の2024年以降の変更点】について仕事用の下調べをしてください。欲しい内容：概要、最近の動向、よくある課題、実務で見るべきポイント、次に調べるべき論点。できるだけ簡潔にお願いします。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【概要】
+インボイス制度は2023年10月に開始。2024年以降も段階的な経過措置が続いており、2026年9月末まで免税事業者からの仕入れに一定割合の控除が認められています。
+
+【最近の動向】
+税務署への登録申請件数は増加中。免税事業者との取引見直しを進める企業が増えている。
+
+【よくある課題】
+・登録番号の確認漏れによる仕入税額控除の否認
+・少額取引（1万円未満）の帳簿記載方法の混乱
+
+【実務で見るべきポイント】
+請求書への登録番号記載の有無を必ず確認する。
+
+【次に調べるべき論点】
+2026年10月以降の経過措置終了後の対応方針の検討。</div>
+    </article>
+
+    <article>
+      <div class="label">6 / 20</div>
+      <h3 class="template-title">競合整理</h3>
+      <div class="meta">出力形式：比較表＋3行まとめ</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">【テーマ／サービス名】の競合候補を整理してください。出力形式：競合名、特徴、強み、弱み、どんな顧客に向いていそうか。最後に全体傾向を3行でまとめてください。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+【中小企業向けクラウド勤怠管理システム】の競合候補を整理してください。出力形式：競合名、特徴、強み、弱み、どんな顧客に向いていそうか。最後に全体傾向を3行でまとめてください。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+| 競合名 | 特徴 | 強み | 弱み | 向いている顧客 |
+|--------|------|------|------|--------------|
+| KING OF TIME | クラウド型で導入実績多数 | 打刻方法が豊富 | UIがやや複雑 | 中規模以上の企業 |
+| ジョブカン | 機能がシンプルで安価 | 初期費用ゼロで始めやすい | 細かいカスタマイズが苦手 | 小規模・スタートアップ |
+| 楽楽勤怠 | 給与計算との連携が強み | 既存の楽楽シリーズと統合しやすい | 単体では割高 | 楽楽シリーズ導入済み企業 |
+
+【全体傾向】
+低価格・シンプル志向のサービスと、給与・人事と連携できる統合型サービスに二極化している。
+中小企業はコスト重視でジョブカン系を選ぶ傾向があり、成長に伴い乗り換えるケースも多い。
+差別化には「サポート品質」と「他システムとの連携しやすさ」が鍵になっている。</div>
+    </article>
+
+    <article>
+      <div class="label">7 / 20</div>
+      <h3 class="template-title">仕事用メール作成</h3>
+      <div class="meta">出力形式：件名＋本文</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">仕事用メールを作成してください。目的：【例：打ち合わせ日程の調整】。相手：【取引先／上司／社内】。条件：丁寧、長すぎない、件名もつける、そのまま送れる文面にする。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+仕事用メールを作成してください。目的：【来週の訪問日程を3候補で提示して確認する】。相手：【取引先の担当者・田中様】。条件：丁寧、長すぎない、件名もつける、そのまま送れる文面にする。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【件名】打ち合わせ日程のご確認（〇〇株式会社 山田）
+
+田中様
+
+お世話になっております。〇〇株式会社の山田でございます。
+
+このたびは、来週の訪問日程についてご相談させてください。
+以下の日程でご都合はいかがでしょうか。
+
+・4月15日（月）14:00〜
+・4月16日（火）10:00〜
+・4月18日（木）15:00〜
+
+ご都合のよい日時をお知らせいただけますと幸いです。
+どうぞよろしくお願いいたします。</div>
+    </article>
+
+    <article>
+      <div class="label">8 / 20</div>
+      <h3 class="template-title">返信文作成</h3>
+      <div class="meta">出力形式：返信文</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">以下への返信文を作ってください。条件：丁寧、簡潔、相手に失礼がない、必要ならお詫びや感謝も自然に入れる。
+
+受け取った文：
+【ここに文章を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+以下への返信文を作ってください。条件：丁寧、簡潔、相手に失礼がない、必要ならお詫びや感謝も自然に入れる。
+
+受け取った文：
+お世話になっております。先日ご提出いただいた資料を確認しました。1点確認ですが、第3章の数値の根拠を教えていただけますか。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+お世話になっております。ご確認いただきありがとうございます。
+
+ご質問いただいた第3章の数値についてご説明いたします。
+当該数値は〇〇調査（2024年版）を出典としており、P.42の集計データをもとに算出しております。
+
+詳細資料が必要でしたら別途お送りすることも可能です。
+お手数をおかけしますが、どうぞよろしくお願いいたします。</div>
+    </article>
+
+    <div class="page-number">5</div>
+  </section>
+
+  <!-- テンプレ 9〜12 -->
+  <section class="page">
+    <h2>テンプレート 9〜12</h2>
+
+    <article>
+      <div class="label">9 / 20</div>
+      <h3 class="template-title">文章の敬語化・自然化</h3>
+      <div class="meta">出力形式：修正文</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">この文章をビジネス向けの自然な日本語に直してください。条件：丁寧、かたすぎない、冗長にしない、修正版だけ先に出す。
+
+文章：
+【ここに文章を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+この文章をビジネス向けの自然な日本語に直してください。条件：丁寧、かたすぎない、冗長にしない、修正版だけ先に出す。
+
+文章：
+例の件ですが、やっぱり来週は無理っぽいです。再来週以降でどうにかしたいと思ってます。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+先日のご件について、誠に恐れ入りますが、来週のご対応が難しい状況となっております。再来週以降でのご調整をお願いできますでしょうか。ご不便をおかけして申し訳ございません。</div>
+    </article>
+
+    <article>
+      <div class="label">10 / 20</div>
+      <h3 class="template-title">上司向け報告文</h3>
+      <div class="meta">出力形式：短文報告／箇条書き</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">上司向けの報告文に整えてください。条件：結論先、100〜200字程度、必要なら箇条書き、現状・課題・次アクションが分かるようにする。
+
+素材：
+【ここに内容を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+上司向けの報告文に整えてください。条件：結論先、100〜200字程度、必要なら箇条書き、現状・課題・次アクションが分かるようにする。
+
+素材：
+A社の件、先方から連絡がなくて止まってる。こっちからもう一度連絡するか迷ってる。先週2回電話したけどつながらなかった。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【報告】A社対応が連絡待ちにより停滞しています。
+
+・現状：先方からの返信がなく、1週間以上進捗なし
+・課題：先週2回電話したが不通。メールも未読の可能性あり
+・次アクション：本日中に再度電話し、不通の場合は担当者変更を含めて再アプローチを検討します。ご指示があればお知らせください。</div>
+    </article>
+
+    <article>
+      <div class="label">11 / 20</div>
+      <h3 class="template-title">社内共有文</h3>
+      <div class="meta">出力形式：社内共有文</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">以下の内容を社内共有向けに整理してください。条件：読みやすい、要点がすぐ分かる、必要なら見出しをつける、重要事項は箇条書きにする。
+
+内容：
+【ここに内容を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+以下の内容を社内共有向けに整理してください。条件：読みやすい、要点がすぐ分かる、必要なら見出しをつける、重要事項は箇条書きにする。
+
+内容：
+5月から有給の取得管理方法が変わる。今まで紙だったのをシステムに移行する。入力期限は毎月25日。操作方法は来週の朝礼で説明する。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【社内共有】有給管理方法の変更について（5月より）
+
+5月より、有給取得の管理方法が紙からシステムに変わります。
+
+■ 変更点
+・これまで：紙の申請書で提出
+・5月以降：専用システムへの入力に変更
+
+■ 重要事項
+・入力期限：毎月25日
+・操作方法の説明：来週の朝礼にて実施予定
+
+不明点があれば人事担当までお気軽にご連絡ください。</div>
+    </article>
+
+    <article>
+      <div class="label">12 / 20</div>
+      <h3 class="template-title">依頼文・催促文</h3>
+      <div class="meta">出力形式：依頼メール／メッセージ文</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">角が立ちにくい依頼文を作ってください。目的：【資料提出のお願い／確認依頼／返信催促など】。条件：丁寧、やわらかい、でも用件は明確、必要なら期限も入れる。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+角が立ちにくい依頼文を作ってください。目的：【先週お願いした見積書の提出催促。期限は今週金曜日】。条件：丁寧、やわらかい、でも用件は明確、必要なら期限も入れる。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+お世話になっております。
+
+先日お願いしておりました見積書の件ですが、その後いかがでしょうか。
+お忙しいところ大変恐れ入りますが、今週金曜日（4月18日）までにご共有いただけますと助かります。
+
+ご不明な点がございましたら、お気軽にお声がけください。
+どうぞよろしくお願いいたします。</div>
+    </article>
+
+    <div class="page-number">6</div>
+  </section>
+
+  <!-- テンプレ 13〜16 -->
+  <section class="page">
+    <h2>テンプレート 13〜16</h2>
+
+    <article>
+      <div class="label">13 / 20</div>
+      <h3 class="template-title">議事録整形</h3>
+      <div class="meta">出力形式：整形済み議事録</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">この議事録を読みやすく整えてください。形式：会議名、日時、参加者、主な議題、決定事項、宿題・担当、次回までの対応。
+
+メモ：
+【ここにメモを貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+この議事録を読みやすく整えてください。形式：会議名、日時、参加者、主な議題、決定事項、宿題・担当、次回までの対応。
+
+メモ：
+4/12 採用会議 参加：田中・鈴木・佐藤
+5月からの求人どうするか話し合い。
+求人票は鈴木さんが4/18までにリニューアル。
+面接フローは田中がたたき台を来週提出。
+次回5/2に進捗確認。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【会議名】採用会議
+【日時】4月12日
+【参加者】田中・鈴木・佐藤
+
+■ 主な議題
+5月以降の採用活動の進め方
+
+■ 決定事項
+・求人票をリニューアルする
+・面接フローを見直す
+
+■ 宿題・担当
+| 担当 | 内容 | 期限 |
+|------|------|------|
+| 鈴木 | 求人票のリニューアル | 4/18 |
+| 田中 | 面接フローのたたき台作成 | 来週中 |
+
+■ 次回までの対応
+上記2点の進捗を5月2日に確認する。</div>
+    </article>
+
+    <article>
+      <div class="label">14 / 20</div>
+      <h3 class="template-title">タスク整理</h3>
+      <div class="meta">出力形式：タスク一覧</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">以下の業務を整理してください。出力形式：やること一覧、優先順位、すぐやるもの、後回しでよいもの、他人に依頼できるもの。
+
+状況：
+【ここに状況を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+以下の業務を整理してください。出力形式：やること一覧、優先順位、すぐやるもの、後回しでよいもの、他人に依頼できるもの。
+
+状況：
+今週中にやること：A社への提案書作成、社内向け手順書の更新、月次レポートの集計、備品発注、新入社員の入力作業チェック、来月の研修日程調整</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【すぐやるもの（今日〜明日）】
+・A社への提案書作成（締切が近い可能性あり、要確認）
+・月次レポートの集計（他の作業の前提になる）
+
+【今週中にやるもの】
+・社内向け手順書の更新
+・新入社員の入力作業チェック
+
+【後回しでよいもの】
+・来月の研修日程調整（まだ時間的余裕あり）
+
+【他人に依頼できるもの】
+・備品発注（発注担当者がいれば依頼可）
+・新入社員の入力作業チェック（先輩社員への依頼も検討）</div>
+    </article>
+
+    <article>
+      <div class="label">15 / 20</div>
+      <h3 class="template-title">優先順位づけ</h3>
+      <div class="meta">出力形式：優先順位表</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">以下のタスクの優先順位をつけてください。判断基準：緊急度、重要度、工数、依存関係。最後に、今日やる順番も提案してください。
+
+タスク：
+【ここにタスクを貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+以下のタスクの優先順位をつけてください。判断基準：緊急度、重要度、工数、依存関係。最後に、今日やる順番も提案してください。
+
+タスク：
+・B社への見積送付（先方が今日中に欲しいと言っている）
+・月次報告書の作成（締切：今週金曜）
+・社内勉強会の資料作り（来週水曜）
+・上司からの質問メールへの返信
+・在庫確認と発注</div>
+<div class="output-box"><span class="output-label">出力例</span>
+| 優先順位 | タスク | 緊急度 | 重要度 | 工数目安 |
+|---------|--------|--------|--------|---------|
+| 1 | B社への見積送付 | 高 | 高 | 30分 |
+| 2 | 上司へのメール返信 | 高 | 中 | 10分 |
+| 3 | 在庫確認と発注 | 中 | 中 | 20分 |
+| 4 | 月次報告書の作成 | 中 | 高 | 2時間 |
+| 5 | 社内勉強会の資料作り | 低 | 中 | 3時間 |
+
+【今日やる順番の提案】
+① B社見積（最優先・今日中） → ② メール返信（10分で完了） → ③ 在庫確認・発注 → ④ 報告書に着手（残り時間で進める）</div>
+    </article>
+
+    <article>
+      <div class="label">16 / 20</div>
+      <h3 class="template-title">提案の骨子作成</h3>
+      <div class="meta">出力形式：提案構成案</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">【テーマ】について提案の骨子を作ってください。含めたい内容：背景、課題、提案内容、期待効果、懸念点、次の進め方。まずは文章だけで、簡潔にお願いします。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+【社内のペーパーレス化推進】について提案の骨子を作ってください。含めたい内容：背景、課題、提案内容、期待効果、懸念点、次の進め方。まずは文章だけで、簡潔にお願いします。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【背景】
+紙の書類が多く、印刷・保管・検索にかかるコストと時間が課題になっています。
+
+【課題】
+月間の印刷枚数は約3,000枚。書類の検索に1人あたり平均15分/日かかっています。
+
+【提案内容】
+申請書・報告書・議事録の3種類をクラウドツール（例：Google Workspace）に移行します。
+
+【期待効果】
+印刷コスト削減（年間約20万円）、検索時間の短縮（月40時間以上）。
+
+【懸念点】
+ITリテラシーにばらつきがあるため、導入時の研修が必要です。
+
+【次の進め方】
+来月中にパイロット部署を1つ選定し、2ヶ月間試験運用を行います。</div>
+    </article>
+
+    <div class="page-number">7</div>
+  </section>
+
+  <!-- テンプレ 17〜20 -->
+  <section class="page">
+    <h2>テンプレート 17〜20</h2>
+
+    <article>
+      <div class="label">17 / 20</div>
+      <h3 class="template-title">課題整理</h3>
+      <div class="meta">出力形式：課題整理メモ</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">この状況の課題を整理してください。出力形式：現状、問題点、原因の仮説、打ち手案、すぐ試せること。
+
+状況：
+【ここに状況を貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+この状況の課題を整理してください。出力形式：現状、問題点、原因の仮説、打ち手案、すぐ試せること。
+
+状況：
+新卒採用で応募数が昨年の半分以下になっている。求人票は変えていない。面接には来るが内定辞退が増えている。競合他社は採用を増やしているらしい。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【現状】
+新卒採用の応募数が昨年比50%以下に落ち込んでいる。
+
+【問題点】
+・応募数の減少に加え、内定辞退率も上昇している
+・求人票の内容が数年前から変わっておらず、情報が古い可能性がある
+
+【原因の仮説】
+・競合他社が待遇・働き方の情報を積極的に発信しており、相対的に見劣りしている
+・口コミサイト等でネガティブな情報が広まっている可能性がある
+
+【打ち手案】
+・求人票の内容をリニューアルし、働き方・キャリアパスを具体的に記載する
+・OB・OGを活用した情報発信を強化する
+
+【すぐ試せること】
+求人票のキャッチコピーと福利厚生欄を今週中に更新する。</div>
+    </article>
+
+    <article>
+      <div class="label">18 / 20</div>
+      <h3 class="template-title">判断材料整理</h3>
+      <div class="meta">出力形式：判断材料一覧</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">【テーマ】の判断材料を整理してください。条件：賛成材料、懸念点、確認不足の点、判断前に追加で確認すべきこと。最後に、現時点でのおすすめ判断も簡潔に書いてください。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+【新しい勤怠管理システムへの切り替えを来月から行うかどうか】の判断材料を整理してください。条件：賛成材料、懸念点、確認不足の点、判断前に追加で確認すべきこと。最後に、現時点でのおすすめ判断も簡潔に書いてください。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【賛成材料】
+・現行システムは打刻ミスが多く、月次集計に毎月3時間以上かかっている
+・新システムは導入コストが年間12万円で、工数削減効果と見合う試算
+
+【懸念点】
+・移行期間中に打刻データが混在するリスクがある
+・パート・アルバイトへの操作説明に時間がかかる可能性がある
+
+【確認不足の点】
+・既存の給与計算ソフトとの連携可否が未確認
+・現場スタッフの受け入れ意向を聞いていない
+
+【判断前に確認すべきこと】
+給与ソフトとの連携仕様を確認し、現場リーダー1〜2名に意見を聞く。
+
+【現時点のおすすめ判断】
+上記2点を確認次第、来月からの切り替えを進めてよいと思われます。</div>
+    </article>
+
+    <article>
+      <div class="label">19 / 20</div>
+      <h3 class="template-title">スケジュールたたき台</h3>
+      <div class="meta">出力形式：スケジュール案</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">【案件名】の進行スケジュールたたき台を作ってください。前提：開始日：【日付】、締切：【日付】、関係者：【営業／開発／デザインなど】。出力形式：フェーズ分け、各フェーズのやること、注意点、遅れやすいポイント。</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+【社内規程改定プロジェクト】の進行スケジュールたたき台を作ってください。前提：開始日：【5月1日】、締切：【6月30日】、関係者：【人事・法務・各部署マネージャー】。出力形式：フェーズ分け、各フェーズのやること、注意点、遅れやすいポイント。</div>
+<div class="output-box"><span class="output-label">出力例</span>
+【社内規程改定プロジェクト：スケジュールたたき台】
+
+■ フェーズ1：現状把握（5/1〜5/15）
+・各部署から現行規程への意見・課題を収集
+・人事・法務で改定優先箇所を整理
+
+■ フェーズ2：改定案の作成（5/16〜6/6）
+・法務が条文案を起草
+・人事が各部署マネージャーにレビュー依頼
+
+■ フェーズ3：最終確認・承認（6/7〜6/20）
+・経営層への報告・承認取得
+・必要に応じて弁護士チェック
+
+■ フェーズ4：周知・施行（6/21〜6/30）
+・全社員への通知・説明会の実施
+
+【注意点】弁護士確認が必要な場合は2週間程度の余裕を見ること。
+【遅れやすいポイント】各部署のレビュー回収。期限を明示して依頼することが重要。</div>
+    </article>
+
+    <article>
+      <div class="label">20 / 20</div>
+      <h3 class="template-title">ToDoを実行計画化</h3>
+      <div class="meta">出力形式：実行計画表</div>
+      <span class="hint">※【　】の部分を自分の内容に置き換える</span>
+      <div class="prompt-box">このToDoを実行しやすい形にしてください。条件：1タスク1行、所要時間の目安、優先順位、着手条件、完了条件。
+
+ToDo：
+【ここにToDoを貼る】</div>
+      <div class="example-box"><span class="example-label">使用例</span>
+このToDoを実行しやすい形にしてください。条件：1タスク1行、所要時間の目安、優先順位、着手条件、完了条件。
+
+ToDo：
+・新入社員向けマニュアル作成
+・4月分の経費精算
+・C社との契約書確認
+・チームの目標設定シート記入
+・健康診断の日程調整（全員分）</div>
+<div class="output-box"><span class="output-label">出力例</span>
+| # | タスク | 所要時間 | 優先順位 | 着手条件 | 完了条件 |
+|---|--------|---------|---------|---------|---------|
+| 1 | C社との契約書確認 | 30分 | 高 | 契約書PDFが手元にある | 問題点をメモし担当者に共有済み |
+| 2 | 4月分の経費精算 | 20分 | 高 | 領収書が揃っている | システムへの入力・申請完了 |
+| 3 | 健康診断の日程調整 | 40分 | 中 | 候補日の確認ができる | 全員の日程確定・通知済み |
+| 4 | 目標設定シート記入 | 30分 | 中 | テンプレートを入手済み | 提出期限前に提出完了 |
+| 5 | 新入社員向けマニュアル作成 | 3時間 | 低 | 既存資料を収集済み | レビュー依頼を出せる状態 |</div>
+    </article>
+
+    <div class="page-number">8</div>
+  </section>
+
+  <!-- 使い分け早見表 -->
+  <section class="page">
+    <h2>使い分け早見表</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>文章を作りたいとき</h3>
+        <ul class="mini-list">
+          <li>仕事用メール作成</li>
+          <li>返信文作成</li>
+          <li>文章の敬語化・自然化</li>
+          <li>社内共有文</li>
+          <li>依頼文・催促文</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>整理したいとき</h3>
+        <ul class="mini-list">
+          <li>長文要約</li>
+          <li>記事・テキストの要点整理</li>
+          <li>会議メモ整理</li>
+          <li>議事録整形</li>
+          <li>タスク整理</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>比較・判断したいとき</h3>
+        <ul class="mini-list">
+          <li>比較表作成</li>
+          <li>競合整理</li>
+          <li>判断材料整理</li>
+          <li>課題整理</li>
+          <li>提案の骨子作成</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>仕事を進めたいとき</h3>
+        <ul class="mini-list">
+          <li>優先順位づけ</li>
+          <li>スケジュールたたき台</li>
+          <li>ToDoを実行計画化</li>
+          <li>上司向け報告文</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page-number">9</div>
+  </section>
+
+  <!-- 注意事項 -->
+  <section class="page">
+    <h2>使うときの注意</h2>
+    <h3>1. 出力内容は必ず自分で確認する</h3>
+    <p>AIは便利ですが、事実関係や表現が常に正確とは限りません。社外に出す文章、社内の正式文書、重要な報告は必ず人が内容を確認・修正してから使用してください。</p>
+    <h3>2. 個人情報・機密情報の扱いに注意する</h3>
+    <p>顧客情報、社員情報、契約情報などは、社内ルールに従って扱ってください。入力してよい情報とそうでない情報を区別することが大切です。</p>
+    <h3>3. 1回で完璧を目指さない</h3>
+    <p>最初の回答をたたき台にして、「もっと短く」「やさしく」「箇条書きで」などと追加で頼むと精度が上がります。</p>
+    <h3>4. 自分の仕事に合わせて育てる</h3>
+    <p>テンプレは出発点です。社内でよく使う言い回しや形式に合わせて少しずつ調整すると、より使いやすくなります。</p>
+    <h3>5. URLの読み込みに注意する</h3>
+    <p>ChatGPTの無料版（GPT-3.5）はURLを直接読み込む機能がありません。記事を読ませたいときは、本文テキストをコピーして貼り付けてください。有料版（GPT-4以降）ではWeb閲覧機能が使える場合があります。</p>
+    <div class="page-number">10</div>
+  </section>
+
+  <!-- おわりに -->
+  <section class="page">
+    <h2>おわりに</h2>
+    <p>AIは、仕事を代わりに全部やるものではなく、仕事を整え、速め、わかりやすくするための相棒です。まずは1つだけでも使ってみてください。使える場面が見つかると、日々の仕事の負担は確実に軽くなります。</p>
+    <p>この教材を社内で使いながら、自社向けの定型文、報告書、議事録、提案書の型へ発展させていくと、AI活用が一時的な流行ではなく、業務の仕組みとして定着します。</p>
+    <div class="card" style="margin-top: 22px;">
+      <div class="label">著者</div>
+      <p><strong>AI社労士</strong></p>
+      <p class="small muted">社員が安心して使える、実務に寄ったAI活用を支援するための教材です。</p>
+    </div>
+    <div class="page-number">11</div>
+  </section>
+
+</div>
+
+  <script>
+    (function () {
+      const articles = Array.from(document.querySelectorAll('article'));
+      articles.forEach((article, index) => {
+        const num = index + 1;
+        article.id = `template-${num}`;
+        article.classList.add('template-item');
+
+        const titleEl = article.querySelector('.template-title');
+        const promptEl = article.querySelector('.prompt-box');
+        if (!titleEl || !promptEl) return;
+
+        const searchable = [titleEl.textContent, article.textContent].join(' ').toLowerCase();
+        article.setAttribute('data-title', searchable);
+
+        const toolbar = document.createElement('div');
+        toolbar.className = 'toolbar';
+        toolbar.innerHTML = `<span class="template-no">TEMPLATE ${String(num).padStart(2, '0')}</span><button class="copy-btn" type="button">コピー</button>`;
+        titleEl.insertAdjacentElement('beforebegin', toolbar);
+
+        const button = toolbar.querySelector('.copy-btn');
+        button.addEventListener('click', async () => {
+          const text = promptEl.innerText.trim();
+          try {
+            await navigator.clipboard.writeText(text);
+            const original = button.textContent;
+            button.textContent = 'コピー済み';
+            button.classList.add('copied');
+            setTimeout(() => {
+              button.textContent = original;
+              button.classList.remove('copied');
+            }, 1600);
+          } catch (e) {
+            const range = document.createRange();
+            range.selectNodeContents(promptEl);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+        });
+      });
+
+      const search = document.getElementById('templateSearch');
+      if (search) {
+        search.addEventListener('input', () => {
+          const q = search.value.trim().toLowerCase();
+          articles.forEach((article) => {
+            const hay = article.getAttribute('data-title') || '';
+            article.classList.toggle('hidden-template', !!q && !hay.includes(q));
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
